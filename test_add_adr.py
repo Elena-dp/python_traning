@@ -58,7 +58,7 @@ class TestAddAdr(unittest.TestCase):
         wd.find_element_by_name("email").send_keys(addrress.mail)
         # submit....
         wd.find_element_by_xpath(
-            "(.//*[normalize-space(text()) and normalize-space(.)='Notes:'])[1]/following::input[1]").click()
+            "(//input[@name='submit'])[2]").click()
 
     def login(self, wd, username, password):
         # login
