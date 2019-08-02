@@ -1,6 +1,5 @@
 from selenium import webdriver
 from fixtureaddrr.session import SessionHelper
-from fixtureaddrr.openhomepage import OpenhomepageHelper
 from model.addline import AddlineHelper
 
 class Applicationaddrr:
@@ -9,9 +8,12 @@ class Applicationaddrr:
         self.wd = webdriver.Firefox()
         self.wd.implicitly_wait(30)
         self.session=SessionHelper(self)
-        self.openhomepage=OpenhomepageHelper(self)
         self.addline=AddlineHelper(self)
 
+    def open(self):
+        wd = self.wd
+        # open home page
+        wd.get("http://localhost/addressbook/edit.php")
 
     def destroy (self):
         self.wd.quit()
