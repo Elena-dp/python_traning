@@ -1,7 +1,7 @@
 from selenium import webdriver
 from fixtureaddrr.session import SessionHelper
 from fixtureaddrr.openhomepage import OpenhomepageHelper
-from modeladdrr.addline import AddlineHelper
+from model.addline import AddlineHelper
 
 class Applicationaddrr:
 

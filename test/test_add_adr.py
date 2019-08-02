@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 import pytest
-from modeladdrr.addrress import Addrress
+from model.addrress import Addrress
 from fixtureaddrr.applicationaddrr import Applicationaddrr
 
 
