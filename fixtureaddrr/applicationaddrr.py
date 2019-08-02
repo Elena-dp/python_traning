@@ -1,5 +1,5 @@
 from selenium import webdriver
-from fixtureaddrr.session import SessionHelper
+from fixture.session import SessionHelper
 from model.addline import AddlineHelper
 
 class Applicationaddrr:
@@ -10,7 +10,7 @@ class Applicationaddrr:
         self.session=SessionHelper(self)
         self.addline=AddlineHelper(self)
 
-    def open(self):
+    def open_home_page(self):
         wd = self.wd
         # open home page
         wd.get("http://localhost/addressbook/edit.php")
