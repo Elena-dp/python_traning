@@ -5,7 +5,6 @@ class AddlineHelper:
 
     def add_new(self, addrress):
         wd = self.app.wd
-        #wd.get("http://localhost/addressbook/edit.php")
         # add new string
         wd.find_element_by_link_text("add new").click()
         wd.find_element_by_name("firstname").click()
