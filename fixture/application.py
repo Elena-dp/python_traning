@@ -1,7 +1,7 @@
 from selenium import webdriver
 from fixture.session import SessionHelper
 from fixture.group import GroupHelper
-from model.addline import AddlineHelper
+from fixture.addline import AddlineHelper
 
 class Application:
 
