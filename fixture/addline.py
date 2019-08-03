@@ -26,6 +26,11 @@ class AddlineHelper:
         wd.find_element_by_name("email").send_keys(addrress.mail)
         # submit....
         wd.find_element_by_name("submit").click()
+        self.return_to_home()
 
+    def return_to_home(self):
+        wd = self.app.wd
+        # retun home page
+        wd.find_element_by_link_text("home page").click()
 
 
