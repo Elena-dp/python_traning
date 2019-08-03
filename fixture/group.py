@@ -6,6 +6,7 @@ class GroupHelper:
     def open_groups_page(self):
         # open groups page, init group creation
         wd = self.app.wd
+        wd.get("http://localhost/addressbook/group.php")
         wd.find_element_by_name("new").click()
 
     def create(self, group):

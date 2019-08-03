@@ -2,12 +2,12 @@
 
 import pytest
 from model.addrress import Addrress
-from fixtureaddrr.applicationaddrr import Applicationaddrr
+from fixture.application import Application
 
 
 @pytest.fixture
 def app(request):
-    fixture=Applicationaddrr()
+    fixture=Application()
     request.addfinalizer(fixture.destroy)
     return fixture
 
