@@ -5,6 +5,7 @@ from fixture.addline import AddlineHelper
 from fixture.select import SelectHelper
 from fixture.edit import EditHelper
 from fixture.delete import DeleteHelper
+from fixture.adr_and_group import AdrInGroupHelper
 
 class Application:
 
@@ -17,11 +18,11 @@ class Application:
         self.select=SelectHelper(self)
         self.edit=EditHelper(self)
         self.delete=DeleteHelper(self)
+        self.adr_and_group=AdrInGroupHelper(self)
 
     def open_home_page(self):
         wd = self.wd
         wd.get("http://localhost/addressbook/")
-
 
     def destroy(self):
         self.wd.quit()

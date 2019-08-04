@@ -10,4 +10,6 @@ class SelectHelper:
         #or wd.find_element_by_xpath("//input[@id='45']").click()
         #or wd.find_element_by_id("45").click()
 
-
+    def select_all(self):
+        wd = self.app.wd
+        wd.find_element_by_id("MassCB").click()
