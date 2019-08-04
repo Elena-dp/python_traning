@@ -61,6 +61,12 @@ class AddlineHelper:
         wd.find_element_by_xpath("(//input[@name='update'])[2]").click()
         self.return_to_home()
 
+    def del_first_adr(self):
+        wd = self.app.wd
+        wd.find_element_by_name("selected[]").click()
+        wd.find_element_by_xpath("//input[@value='Delete']").click()
+        wd.switch_to_alert().accept()
+
     def return_to_home(self):
         wd = self.app.wd
         # retun home page
