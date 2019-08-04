@@ -28,12 +28,6 @@ class AddlineHelper:
         wd.find_element_by_name("submit").click()
         self.return_to_home()
 
-    def del_first_adr(self,app):
-        wd = self.app.wd
-        app.select.select_first_adr()
-        wd.find_element_by_xpath("//input[@value='Delete']").click()
-        wd.switch_to_alert().accept()
-
     def return_to_home(self):
         wd = self.app.wd
         # retun home page
