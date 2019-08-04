@@ -17,3 +17,10 @@ class DeleteHelper:
         #submit deletion
         wd.find_element_by_name("delete").click()
         app.group.return_to_groups_page()
+
+    def delete_alladr(self,app):
+        wd = self.app.wd
+        app.select.select_all()
+        wd.find_element_by_xpath("//input[@value='Delete']").click()
+        wd.switch_to_alert().accept()
+

@@ -15,3 +15,11 @@ class AdrInGroupHelper:
         app.select.select_specgroup()
         wd.find_element_by_name("add").click()
         wd.find_element_by_link_text("home").click()
+
+    def alladr_in_specgroup(self, app):
+        wd = self.app.wd
+        app.select.select_all()
+        app.select.select_specgroup()
+        wd.find_element_by_name("add").click()
+        wd.find_element_by_link_text("home").click()
+
