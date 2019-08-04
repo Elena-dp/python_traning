@@ -6,7 +6,7 @@ from model.addrress import Addrress
 
 def test_add_adr(app):
     app.session.login(username="admin", password="secret")
-    app.addline.add_new(Addrress(fname="Le", mname="An", lname="Ka", niname="eldp", comp="DiPi", addrr="Moj", homtel="+77777777777", mail="el@dprint.ru"))
+    app.addline.add_new(Addrress(fname="V", mname="V", lname="v", niname="v", comp="V", addrr="V", homtel="+77774444444", mail="el@dp"))
     app.session.logout()
 
 
