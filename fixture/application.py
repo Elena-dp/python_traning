@@ -4,6 +4,7 @@ from fixture.group import GroupHelper
 from fixture.addline import AddlineHelper
 from fixture.select import SelectHelper
 from fixture.edit import EditHelper
+from fixture.delete import DeleteHelper
 
 class Application:
 
@@ -15,6 +16,7 @@ class Application:
         self.addline=AddlineHelper(self)
         self.select=SelectHelper(self)
         self.edit=EditHelper(self)
+        self.delete=DeleteHelper(self)
 
     def open_home_page(self):
         wd = self.wd
