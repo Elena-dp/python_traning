@@ -7,6 +7,13 @@ class AddlineHelper:
         wd = self.app.wd
         # add new string
         wd.find_element_by_link_text("add new").click()
+        self.fill_adr_form(addrress)
+        # submit....
+        wd.find_element_by_name("submit").click()
+        self.return_to_home()
+
+    def fill_adr_form(self, addrress):
+        wd = self.app.wd
         wd.find_element_by_name("firstname").click()
         wd.find_element_by_name("firstname").clear()
         wd.find_element_by_name("firstname").send_keys(addrress.fname)
@@ -24,9 +31,6 @@ class AddlineHelper:
         wd.find_element_by_name("home").send_keys(addrress.homtel)
         wd.find_element_by_name("email").clear()
         wd.find_element_by_name("email").send_keys(addrress.mail)
-        # submit....
-        wd.find_element_by_name("submit").click()
-        self.return_to_home()
 
     def return_to_home(self):
         wd = self.app.wd
