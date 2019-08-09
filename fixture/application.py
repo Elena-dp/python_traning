@@ -2,7 +2,6 @@ from selenium import webdriver
 from fixture.session import SessionHelper
 from fixture.group import GroupHelper
 from fixture.addline import AddlineHelper
-from fixture.adr_and_group import AdrInGroupHelper
 
 class Application:
 
@@ -12,7 +11,6 @@ class Application:
         self.session=SessionHelper (self)
         self.group=GroupHelper(self)
         self.addline=AddlineHelper(self)
-        self.adr_and_group=AdrInGroupHelper(self)
 
     def open_home_page(self):
         wd = self.wd
