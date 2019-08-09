@@ -5,10 +5,8 @@ class AddlineHelper:
 
     def add_new(self, addrress):
         wd = self.app.wd
-        # add new string
         wd.find_element_by_link_text("add new").click()
         self.fill_adr_form(addrress)
-        # submit....
         wd.find_element_by_name("submit").click()
         self.return_to_home()
 
@@ -31,6 +29,26 @@ class AddlineHelper:
         wd.find_element_by_name("home").send_keys(addrress.homtel)
         wd.find_element_by_name("email").clear()
         wd.find_element_by_name("email").send_keys(addrress.mail)
+
+    def edit_adr(self,addrress,app):
+        wd = self.app.wd
+        app.addline.select_first_adr()
+        wd.find_element_by_xpath("//img[@alt='Edit']").click()
+        app.addline.fill_adr_form(addrress)
+        wd.find_element_by_xpath("(//input[@name='update'])[2]").click()
+        app.addline.return_to_home()
+
+    def select_first_adr(self):
+        wd = self.app.wd
+        wd.find_element_by_name("selected[]").click()
+        #or wd.find_element_by_xpath("//input[@id='45']").click()
+        #or wd.find_element_by_id("45").click()
+
+
+    def select_all(self):
+        wd = self.app.wd
+        wd.find_element_by_id("MassCB").click()
+
 
     def return_to_home(self):
         wd = self.app.wd
