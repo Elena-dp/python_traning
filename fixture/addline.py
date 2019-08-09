@@ -30,7 +30,7 @@ class AddlineHelper:
         wd.find_element_by_name("email").clear()
         wd.find_element_by_name("email").send_keys(addrress.mail)
 
-    def edit_adr(self,addrress,app):
+    def edit_adr(self,addrress):
         wd = self.app.wd
         self.select_first_adr()
         wd.find_element_by_xpath("//img[@alt='Edit']").click()

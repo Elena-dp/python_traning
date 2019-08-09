@@ -28,7 +28,7 @@ class GroupHelper:
         wd.find_element_by_name("group_footer").clear()
         wd.find_element_by_name("group_footer").send_keys(group.footer)
 
-    def edit_group(self, group,app):
+    def edit_group(self, group):
         wd = self.app.wd
         self.open_groups_page()
         self.select_first_group()
