@@ -44,10 +44,21 @@ class AddlineHelper:
         #or wd.find_element_by_xpath("//input[@id='45']").click()
         #or wd.find_element_by_id("45").click()
 
-
     def select_all(self):
         wd = self.app.wd
         wd.find_element_by_id("MassCB").click()
+
+    def del_first_adr(self):
+        wd = self.app.wd
+        self.select_first_adr()
+        wd.find_element_by_xpath("//input[@value='Delete']").click()
+        wd.switch_to_alert().accept()
+
+    def delete_alladr(self):
+        wd = self.app.wd
+        self.select_all()
+        wd.find_element_by_xpath("//input[@value='Delete']").click()
+        wd.switch_to_alert().accept()
 
 
     def return_to_home(self):
