@@ -60,6 +60,26 @@ class AddlineHelper:
         wd.find_element_by_xpath("//input[@value='Delete']").click()
         wd.switch_to_alert().accept()
 
+    def first_adr_fist_group(self):
+        wd = self.app.wd
+        self.select_first_adr()
+        wd.find_element_by_name("add").click()
+        wd.find_element_by_link_text("home").click()
+
+    def first_adr_spec_group(self, app):
+        wd = self.app.wd
+        self.select_first_adr()
+        app.group.select_specgroup()
+        wd.find_element_by_name("add").click()
+        wd.find_element_by_link_text("home").click()
+
+    def alladr_in_specgroup(self, app):
+        wd = self.app.wd
+        self.select_all()
+        app.group.select_specgroup()
+        wd.find_element_by_name("add").click()
+        wd.find_element_by_link_text("home").click()
+
 
     def return_to_home(self):
         wd = self.app.wd
