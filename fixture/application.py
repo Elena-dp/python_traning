@@ -3,7 +3,6 @@ from fixture.session import SessionHelper
 from fixture.group import GroupHelper
 from fixture.addline import AddlineHelper
 from fixture.select import SelectHelper
-from fixture.edit import EditHelper
 from fixture.delete import DeleteHelper
 from fixture.adr_and_group import AdrInGroupHelper
 
@@ -16,7 +15,6 @@ class Application:
         self.group=GroupHelper(self)
         self.addline=AddlineHelper(self)
         self.select=SelectHelper(self)
-        self.edit=EditHelper(self)
         self.delete=DeleteHelper(self)
         self.adr_and_group=AdrInGroupHelper(self)
 

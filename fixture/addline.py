@@ -32,11 +32,11 @@ class AddlineHelper:
 
     def edit_adr(self,addrress,app):
         wd = self.app.wd
-        app.addline.select_first_adr()
+        self.select_first_adr()
         wd.find_element_by_xpath("//img[@alt='Edit']").click()
-        app.addline.fill_adr_form(addrress)
+        self.fill_adr_form(addrress)
         wd.find_element_by_xpath("(//input[@name='update'])[2]").click()
-        app.addline.return_to_home()
+        self.return_to_home()
 
     def select_first_adr(self):
         wd = self.app.wd
