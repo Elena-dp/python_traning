@@ -64,30 +64,31 @@ class AddlineHelper:
         wd = self.app.wd
         self.select_first_adr()
         wd.find_element_by_name("add").click()
-        wd.find_element_by_link_text("home").click()
+        self.return_to_home()
 
     def first_adr_spec_group(self, app):
         wd = self.app.wd
         self.select_first_adr()
         app.group.select_specgroup()
         wd.find_element_by_name("add").click()
-        wd.find_element_by_link_text("home").click()
+        self.return_to_home()
 
     def alladr_in_specgroup(self, app):
         wd = self.app.wd
         self.select_all()
         app.group.select_specgroup()
         wd.find_element_by_name("add").click()
-        wd.find_element_by_link_text("home").click()
+        self.return_to_home()
 
 
     def return_to_home(self):
         wd = self.app.wd
-        # retun home page
-        wd.find_element_by_link_text("home page").click()
+        # retun home page   просто home
+        wd.find_element_by_link_text("home").click()
 
     def count(self):
         wd = self.app.wd
+        self.return_to_home()
         return len(wd.find_elements_by_name("selected[]"))
 
 
