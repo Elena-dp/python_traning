@@ -40,12 +40,14 @@ class AddlineHelper:
 
     def select_first_adr(self):
         wd = self.app.wd
+        self.return_to_home()
         wd.find_element_by_name("selected[]").click()
         #or wd.find_element_by_xpath("//input[@id='45']").click()
         #or wd.find_element_by_id("45").click()
 
     def select_all(self):
         wd = self.app.wd
+        self.return_to_home()
         wd.find_element_by_id("MassCB").click()
 
     def del_first_adr(self):
