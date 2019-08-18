@@ -2,7 +2,7 @@ from model.addrress import Addrress
 from model.group import Group
 
 def test_adr_in_group(app):
-# работает корректно при self.wd.implicitly_wait(60), при 5, 30 - падает - происходит выделение чекбокса группы, а его быть не может.
+# сейчас и при (0.7) срабатывает.....ранее работало корректно при self.wd.implicitly_wait(60), при 5, 30 - падает - происходит выделение чекбокса группы, а его быть не может.
     if app.group.count() == 0:
         app.group.create(Group(name="Test"))
     else:

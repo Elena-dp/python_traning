@@ -7,7 +7,7 @@ class Application:
 
     def __init__(self):
         self.wd = webdriver.Firefox()
-        self.wd.implicitly_wait(5) # ранее стояло 30, 60 - задержка на тесте "первый адр в первую группу"
+        self.wd.implicitly_wait(0.7) # ранее стояло 30, 60 - задержка на тесте "первый адр в первую группу"
         self.session=SessionHelper (self)
         self.group=GroupHelper(self)
         self.addline=AddlineHelper(self)

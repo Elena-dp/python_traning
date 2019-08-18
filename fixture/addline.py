@@ -55,12 +55,18 @@ class AddlineHelper:
         self.select_first_adr()
         wd.find_element_by_xpath("//input[@value='Delete']").click()
         wd.switch_to_alert().accept()
+        #wd.find_element_by_class_name("msgbox")
+        #wd.find_element_by_link_text("Record successfull deleted")
+        #wd.find_element_by_css_selector("div.msgbox")
 
     def delete_alladr(self):
         wd = self.app.wd
         self.select_all()
         wd.find_element_by_xpath("//input[@value='Delete']").click()
         wd.switch_to_alert().accept()
+        #wd.find_element_by_class_name("msgbox")
+        #wd.find_element_by_link_text("Record successfull deleted")
+        #wd.find_element_by_css_selector("div.msgbox")
 
     def first_adr_fist_group(self):
         wd = self.app.wd
