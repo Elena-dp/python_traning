@@ -5,6 +5,7 @@ class AddlineHelper:
 
     def add_new(self, addrress):
         wd = self.app.wd
+        self.check_home_page()
         wd.find_element_by_link_text("add new").click()
         self.fill_adr_form(addrress)
         wd.find_element_by_name("submit").click()
@@ -32,6 +33,7 @@ class AddlineHelper:
 
     def edit_adr(self,addrress):
         wd = self.app.wd
+        self.check_home_page()
         self.select_first_adr()
         wd.find_element_by_xpath("//img[@alt='Edit']").click()
         self.fill_adr_form(addrress)
@@ -40,42 +42,44 @@ class AddlineHelper:
 
     def select_first_adr(self):
         wd = self.app.wd
-        self.return_to_home()
         wd.find_element_by_name("selected[]").click()
         #or wd.find_element_by_xpath("//input[@id='45']").click()
         #or wd.find_element_by_id("45").click()
 
     def select_all(self):
         wd = self.app.wd
-        self.return_to_home()
         wd.find_element_by_id("MassCB").click()
 
     def del_first_adr(self):
         wd = self.app.wd
+        self.check_home_page()
         self.select_first_adr()
         wd.find_element_by_xpath("//input[@value='Delete']").click()
         wd.switch_to_alert().accept()
+        wd.find_element_by_css_selector("div.msgbox")
         #wd.find_element_by_class_name("msgbox")
         #wd.find_element_by_link_text("Record successfull deleted")
-        #wd.find_element_by_css_selector("div.msgbox")
 
     def delete_alladr(self):
         wd = self.app.wd
+        self.check_home_page()
         self.select_all()
         wd.find_element_by_xpath("//input[@value='Delete']").click()
         wd.switch_to_alert().accept()
+        wd.find_element_by_css_selector("div.msgbox")
         #wd.find_element_by_class_name("msgbox")
         #wd.find_element_by_link_text("Record successfull deleted")
-        #wd.find_element_by_css_selector("div.msgbox")
 
     def first_adr_fist_group(self):
         wd = self.app.wd
+        self.check_home_page()
         self.select_first_adr()
         wd.find_element_by_name("add").click()
         self.return_to_home()
 
     def first_adr_spec_group(self, app):
         wd = self.app.wd
+        self.check_home_page()
         self.select_first_adr()
         app.group.select_specgroup()
         wd.find_element_by_name("add").click()
@@ -83,6 +87,7 @@ class AddlineHelper:
 
     def alladr_in_specgroup(self, app):
         wd = self.app.wd
+        self.check_home_page()
         self.select_all()
         app.group.select_specgroup()
         wd.find_element_by_name("add").click()
@@ -96,9 +101,10 @@ class AddlineHelper:
 
     def count(self):
         wd = self.app.wd
-        self.return_to_home()
+        self.check_home_page()
         return len(wd.find_elements_by_name("selected[]"))
 
-
-
-
+    def check_home_page(self):
+        wd = self.app.wd
+        if not wd.current_url.endswith("http://localhost/addressbook/"):
+            self.return_to_home()
