@@ -13,30 +13,28 @@ class AddlineHelper:
 
     def fill_adr_form(self, addrress):
         wd = self.app.wd
-        wd.find_element_by_name("firstname").click()
-        wd.find_element_by_name("firstname").clear()
-        wd.find_element_by_name("firstname").send_keys(addrress.fname)
-        wd.find_element_by_name("middlename").clear()
-        wd.find_element_by_name("middlename").send_keys(addrress.mname)
-        wd.find_element_by_name("lastname").clear()
-        wd.find_element_by_name("lastname").send_keys(addrress.lname)
-        wd.find_element_by_name("nickname").clear()
-        wd.find_element_by_name("nickname").send_keys(addrress.niname)
-        wd.find_element_by_name("company").clear()
-        wd.find_element_by_name("company").send_keys(addrress.comp)
-        wd.find_element_by_name("address").clear()
-        wd.find_element_by_name("address").send_keys(addrress.addrr)
-        wd.find_element_by_name("home").clear()
-        wd.find_element_by_name("home").send_keys(addrress.homtel)
-        wd.find_element_by_name("email").clear()
-        wd.find_element_by_name("email").send_keys(addrress.mail)
+        self.change_field_value("firstname", addrress.fname)
+        self.change_field_value("middlename", addrress.mname)
+        self.change_field_value("lastname", addrress.lname)
+        self.change_field_value("nickname", addrress.niname)
+        self.change_field_value("company", addrress.comp)
+        self.change_field_value("address", addrress.addrr)
+        self.change_field_value("home", addrress.homtel)
+        self.change_field_value("email", addrress.mail)
 
-    def edit_adr(self,addrress):
+    def change_field_value(self, field_name, text):
+        wd = self.app.wd
+        if text is not None:
+            wd.find_element_by_name(field_name).click()
+            wd.find_element_by_name(field_name).clear()
+            wd.find_element_by_name(field_name).send_keys(text)
+
+    def edit_adr(self,new_adr_date):
         wd = self.app.wd
         self.check_home_page()
         self.select_first_adr()
         wd.find_element_by_xpath("//img[@alt='Edit']").click()
-        self.fill_adr_form(addrress)
+        self.fill_adr_form(new_adr_date)
         wd.find_element_by_xpath("(//input[@name='update'])[2]").click()
         self.return_to_home()
 

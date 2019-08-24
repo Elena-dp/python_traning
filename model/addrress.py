@@ -1,6 +1,6 @@
 class Addrress:
 
-    def __init__(self, fname, mname, lname, niname, comp, addrr, homtel, mail):
+    def __init__(self, fname=None, mname=None, lname=None, niname=None, comp=None, addrr=None, homtel=None, mail=None):
         self.fname=fname
         self.mname=mname
         self.lname=lname
