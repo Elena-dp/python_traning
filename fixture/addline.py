@@ -117,5 +117,5 @@ class AddlineHelper:
         for element in wd.find_elements_by_name("entry"):
             text = element.find_element_by_name("selected[]").get_attribute("title")
             id=element.find_element_by_name("selected[]").get_attribute("value")
-            adrlist.append(Addrress(fnameandlname=text, id=id))
+            adrlist.append(Addrress(twoname=text, id=id))
         return adrlist

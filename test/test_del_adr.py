@@ -8,6 +8,8 @@ def test_del_first_adr(app):
     app.addline.del_first_adr()
     new_list_adr = app.addline.get_adr_list()
     assert len(old_list_adr)-1 == len(new_list_adr)
+    old_list_adr[0:1]=[]
+    assert old_list_adr == new_list_adr
 
 def test_del_alladr(app):
     if app.addline.count() == 0:
