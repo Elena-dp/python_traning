@@ -1,3 +1,5 @@
+from model.addrress import Addrress
+
 class AddlineHelper:
 
     def __init__(self, app):
@@ -106,3 +108,14 @@ class AddlineHelper:
         wd = self.app.wd
         if not wd.current_url.endswith("http://localhost/addressbook/"):
             self.return_to_home()
+
+    def get_adr_list(self):
+        wd = self.app.wd
+        self.check_home_page()
+        adrlist=[]
+        #for element in wd.find_elements_by_css_selector("tr"):
+        for element in wd.find_elements_by_class_name("sortcompletecallback-applyZebra"):
+            text = element.find_element_by_name("selected[]").get_attribute("title")
+            id=element.find_element_by_name("selected[]").get_attribute("value")
+            adrlist.append(Addrress(fnameandlname=text, id=id))
+        return adrlist
