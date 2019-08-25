@@ -10,6 +10,9 @@ def test_add_adr(app):
     new_list_adr = app.addline.get_adr_list()
     assert len(old_list_adr)+1 == len(new_list_adr)
 
-#def test_add_empty_adr(app):
-#    app.addline.add_new(Addrress(fname="", mname="", lname="", niname="", comp="", addrr="", homtel="", mail=""))
+def test_add_empty_adr(app):
+    old_list_adr = app.addline.get_adr_list()
+    app.addline.add_new(Addrress(fname="", mname="", lname="", niname="", comp="", addrr="", homtel="", mail=""))
+    new_list_adr = app.addline.get_adr_list()
+    assert len(old_list_adr)+1 == len(new_list_adr)
 
