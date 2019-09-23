@@ -117,9 +117,8 @@ class AddlineHelper:
         for element in wd.find_elements_by_name("entry"):
 #            text = element.find_element_by_name("selected[]").get_attribute("title")
 #            textL = element.find_element_by_css_selector("td").text
+            #text = element.text
             cells = element.find_elements_by_css_selector("td")
-            textL=cells[1]
-            textF=cells[2]
             id=element.find_element_by_name("selected[]").get_attribute("value")
-            adrlist.append(Addrress(lname=textL, fname=textF, id=id))
+            adrlist.append(Addrress(lname=cells[1].text, fname=cells[2].text, id=id))
         return adrlist
