@@ -18,7 +18,7 @@ class Addrress:
         return "%s:%s:%s" % (self.id, self.lname, self.fname)
 
     def __eq__(self, other):
-        return (self.id is None or other.id is None or self.id == other.id) and (self.lname is None or self.other is None or self.lname == other.lname) and self.fname == other.fname
+        return (self.id is None or other.id is None or self.id == other.id) and (self.lname is None or other.lname is None or self.lname == other.lname) and self.fname == other.fname
 
     def id_or_max(self):
         if self.id:
