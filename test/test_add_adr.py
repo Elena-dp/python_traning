@@ -6,7 +6,7 @@ from model.addrress import Addrress
 
 def test_add_adr(app):
     old_list_adr = app.addline.get_adr_list()
-    addrrss=(Addrress(fname="F23092019", mname="tr", lname="L23092019", niname="hs", comp="yjj", addrr="aa", homtel="+77774444455", mail="ehgsl@dp"))
+    addrrss=(Addrress(fname="F29092019", mname="tr", lname="L29092019", niname="hs", comp="yjj", addrr="aa", homtel="+77774444455", mail="ehgsl@dp"))
     app.addline.add_new(addrrss)
     new_list_adr = app.addline.get_adr_list()
     assert len(old_list_adr)+1 == len(new_list_adr)

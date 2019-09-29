@@ -7,7 +7,7 @@ class AddlineHelper:
 
     def add_new(self, addrress):
         wd = self.app.wd
-        self.check_home_page()
+        self.control_home_page()
         wd.find_element_by_link_text("add new").click()
         self.fill_adr_form(addrress)
         wd.find_element_by_name("submit").click()
@@ -33,7 +33,7 @@ class AddlineHelper:
 
     def edit_adr(self,new_adr_date):
         wd = self.app.wd
-        self.check_home_page()
+        self.control_home_page()
         self.select_first_adr()
         wd.find_element_by_xpath("//img[@alt='Edit']").click()
         self.fill_adr_form(new_adr_date)
@@ -52,7 +52,7 @@ class AddlineHelper:
 
     def del_first_adr(self):
         wd = self.app.wd
-        self.check_home_page()
+        self.control_home_page()
         self.select_first_adr()
         wd.find_element_by_xpath("//input[@value='Delete']").click()
         wd.switch_to_alert().accept()
@@ -62,7 +62,7 @@ class AddlineHelper:
 
     def delete_alladr(self):
         wd = self.app.wd
-        self.check_home_page()
+        self.control_home_page()
         self.select_all()
         wd.find_element_by_xpath("//input[@value='Delete']").click()
         wd.switch_to_alert().accept()
@@ -72,14 +72,14 @@ class AddlineHelper:
 
     def first_adr_fist_group(self):
         wd = self.app.wd
-        self.check_home_page()
+        self.control_home_page()
         self.select_first_adr()
         wd.find_element_by_name("add").click()
         self.return_to_home()
 
     def first_adr_spec_group(self, app):
         wd = self.app.wd
-        self.check_home_page()
+        self.control_home_page()
         self.select_first_adr()
         app.group.select_specgroup()
         wd.find_element_by_name("add").click()
@@ -87,7 +87,7 @@ class AddlineHelper:
 
     def alladr_in_specgroup(self, app):
         wd = self.app.wd
-        self.check_home_page()
+        self.control_home_page()
         self.select_all()
         app.group.select_specgroup()
         wd.find_element_by_name("add").click()
@@ -101,23 +101,22 @@ class AddlineHelper:
 
     def count(self):
         wd = self.app.wd
-        self.check_home_page()
+        self.control_home_page()
         return len(wd.find_elements_by_name("selected[]"))
 
-    def check_home_page(self):
+    def control_home_page(self):
         wd = self.app.wd
-        if not wd.current_url.endswith("http://localhost/addressbook/"):
+        if not wd.current_url.endswith("http://localhost/addressbook/") and len(wd.find_elements_by_css_selector("strong"))>0:
             self.return_to_home()
 
     def get_adr_list(self):
         wd = self.app.wd
-        self.check_home_page()
+        self.control_home_page()
         adrlist=[]
         #for element in wd.find_elements_by_css_selector("tr"):
         for element in wd.find_elements_by_name("entry"):
 #            text = element.find_element_by_name("selected[]").get_attribute("title")
 #            textL = element.find_element_by_css_selector("td").text
-            #text = element.text
             cells = element.find_elements_by_css_selector("td")
             id=element.find_element_by_name("selected[]").get_attribute("value")
             adrlist.append(Addrress(lname=cells[1].text, fname=cells[2].text, id=id))
