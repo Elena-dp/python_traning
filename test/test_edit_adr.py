@@ -6,7 +6,7 @@ def test_edit_fname(app):
         app.addline.add_new(Addrress(fname="edit", mname="edit", lname="edit", niname="test8", comp="test8", addrr="test8", homtel="+7777444test8", mail="8ehgsl@test"))
     old_list_adr = app.addline.get_adr_list()
     index = randrange(len(old_list_adr))
-    addrrss = Addrress(fname="New06102019")
+    addrrss = Addrress(fname="New06okt_3")
     addrrss.id=old_list_adr[index].id
     app.addline.edit_adr_by_index(index, addrrss)
     assert len(old_list_adr) == app.addline.count()
