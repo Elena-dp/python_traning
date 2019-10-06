@@ -33,9 +33,12 @@ class AddlineHelper:
             wd.find_element_by_name(field_name).send_keys(text)
 
     def edit_adr(self,new_adr_date):
+        self.select_adr_by_index(0)
+
+    def edit_adr_by_index(self, index, new_adr_date):
         wd = self.app.wd
         self.control_home_page()
-        self.select_first_adr()
+        self.select_adr_by_index(index)
         wd.find_element_by_xpath("//img[@alt='Edit']").click()
         self.fill_adr_form(new_adr_date)
         wd.find_element_by_xpath("(//input[@name='update'])[2]").click()
@@ -153,3 +156,13 @@ class AddlineHelper:
 #        wd.find_element_by_name("selected[]").click()
 #        #or wd.find_element_by_xpath("//input[@id='45']").click()
 #        #or wd.find_element_by_id("45").click()
+
+#    def edit_adr(self,new_adr_date):
+#        wd = self.app.wd
+#        self.control_home_page()
+#        self.select_first_adr()
+#        wd.find_element_by_xpath("//img[@alt='Edit']").click()
+#        self.fill_adr_form(new_adr_date)
+#        wd.find_element_by_xpath("(//input[@name='update'])[2]").click()
+#        self.return_to_home()
+#        self.adrlist_cache = None
