@@ -3,7 +3,7 @@ from random import randrange
 
 def test_modify_group_name(app):
     if app.group.count()==0:
-        app.group.create(Group(name="test6"))
+        app.group.create(Group(name="modify"))
     old_groups=app.group.get_group_list()
     index = randrange(len(old_groups))
     group = Group(name="new group")

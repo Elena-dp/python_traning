@@ -45,17 +45,22 @@ class AddlineHelper:
     def select_first_adr(self):
         wd = self.app.wd
         wd.find_element_by_name("selected[]").click()
-        #or wd.find_element_by_xpath("//input[@id='45']").click()
-        #or wd.find_element_by_id("45").click()
+
+    def select_adr_by_index(self, index):
+        wd = self.app.wd
+        wd.find_elements_by_name("selected[]")[index].click()
 
     def select_all(self):
         wd = self.app.wd
         wd.find_element_by_id("MassCB").click()
 
     def del_first_adr(self):
+        self.del_adr_by_index(0)
+
+    def del_adr_by_index(self, index):
         wd = self.app.wd
         self.control_home_page()
-        self.select_first_adr()
+        self.select_adr_by_index(index)
         wd.find_element_by_xpath("//input[@value='Delete']").click()
         wd.switch_to_alert().accept()
         wd.find_element_by_css_selector("div.msgbox")
@@ -129,3 +134,22 @@ class AddlineHelper:
                 self.adrlist_cache.append(Addrress(lname=cells[1].text, fname=cells[2].text, id=id))
         return list(self.adrlist_cache)
 
+
+
+
+#    def del_first_adr(self):
+#        wd = self.app.wd
+#        self.control_home_page()
+#        self.select_first_adr()
+#        wd.find_element_by_xpath("//input[@value='Delete']").click()
+#        wd.switch_to_alert().accept()
+#        wd.find_element_by_css_selector("div.msgbox")
+#        #wd.find_element_by_class_name("msgbox")
+#        #wd.find_element_by_link_text("Record successfull deleted")
+#        self.adrlist_cache = None
+
+#    def select_first_adr(self):
+#        wd = self.app.wd
+#        wd.find_element_by_name("selected[]").click()
+#        #or wd.find_element_by_xpath("//input[@id='45']").click()
+#        #or wd.find_element_by_id("45").click()

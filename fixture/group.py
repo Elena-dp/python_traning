@@ -53,11 +53,13 @@ class GroupHelper:
         self.return_to_groups_page()
         self.group_cache = None
 
+    def select_first_group(self):
+        wd = self.app.wd
+        wd.find_element_by_name("selected[]").click()
+
     def select_group_by_index(self, index):
         wd = self.app.wd
         wd.find_elements_by_name("selected[]")[index].click()
-        #or wd.find_element_by_xpath("//input[@id='45']").click()
-        #or wd.find_element_by_id("45").click()
 
     def select_specgroup(self):
         wd = self.app.wd
