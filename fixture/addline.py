@@ -38,8 +38,11 @@ class AddlineHelper:
     def edit_adr_by_index(self, index, new_adr_date):
         wd = self.app.wd
         self.control_home_page()
-        self.select_adr_by_index(index)
-        wd.find_element_by_xpath("//img[@alt='Edit']").click()
+#        self.select_adr_by_index(index)
+        #wd.find_element_by_xpath("//img[@alt='Edit']").click()
+        #wd.find_elements_by_css_selector("a")[index].click()
+#        wd.find_elements_("edit.php?id=[]")[index].click()
+        wd.find_elements_by_name("entry")[index].find_element_by_xpath(".//img[@alt='Edit']").click()
         self.fill_adr_form(new_adr_date)
         wd.find_element_by_xpath("(//input[@name='update'])[2]").click()
         self.return_to_home()
