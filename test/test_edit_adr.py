@@ -11,6 +11,7 @@ def test_edit_fname(app):
     app.addline.edit_adr_by_index(index, addrrss)
     assert len(old_list_adr) == app.addline.count()
     new_list_adr = app.addline.get_adr_list()
+    addrrss.lname=new_list_adr[index].lname
     old_list_adr[index]=addrrss
     assert sorted(old_list_adr, key=Addrress.id_or_max) == sorted(new_list_adr, key=Addrress.id_or_max)
 
