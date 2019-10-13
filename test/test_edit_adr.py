@@ -6,12 +6,16 @@ def test_edit_fname(app):
         app.addline.add_new(Addrress(fname="edit", mname="edit", lname="edit", niname="test8", comp="test8", addrr="test8", homtel="+7777444test8", mail="8ehgsl@test"))
     old_list_adr = app.addline.get_adr_list()
     index = randrange(len(old_list_adr))
-    addrrss = Addrress(fname="New06okt_3")
+    addrrss = Addrress(fname="13102019")
     addrrss.id=old_list_adr[index].id
     app.addline.edit_adr_by_index(index, addrrss)
+    #возвращает флаг, указывающий на то, содержит ли объект указанный атрибут
+    if hasattr(Addrress, 'lname'):
+        return
+    else:
+        addrrss.lname = old_list_adr[index].lname
     assert len(old_list_adr) == app.addline.count()
     new_list_adr = app.addline.get_adr_list()
-    addrrss.lname=new_list_adr[index].lname
     old_list_adr[index]=addrrss
     assert sorted(old_list_adr, key=Addrress.id_or_max) == sorted(new_list_adr, key=Addrress.id_or_max)
 
