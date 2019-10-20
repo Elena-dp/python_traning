@@ -1,4 +1,5 @@
 from model.addrress import Addrress
+import re
 
 class AddlineHelper:
 
@@ -55,7 +56,7 @@ class AddlineHelper:
         cell = row.find_elements_by_tag_name("td")[7]
         cell.find_element_by_tag_name("a").click()
 
-    def open_adr_veiw_by_index(self, index):
+    def open_adr_view_by_index(self, index):
         wd = self.app.wd
         self.control_home_page()
         row = wd.find_elements_by_name("entry")[index]
@@ -147,6 +148,17 @@ class AddlineHelper:
         secondaryphone = wd.find_element_by_name("phone2").get_attribute("value")
         return Addrress(fname=firstname, lname=lastname, id=id, homephone=homephone, mobilephone=mobilephone,
                         workphone=workphone, secondaryphone=secondaryphone)
+
+    def get_contact_from_view_page(self,index):
+        wd = self.app.wd
+        self.open_adr_view_by_index(index)
+        text = wd.find_element_by_id("content").text
+        homephone = re.search("H: (.*)", text).group(1)
+        mobilephone = re.search("M: (.*)", text).group(1)
+        workphone = re.search("W: (.*)", text).group(1)
+        secondaryphone = re.search("P: (.*)", text).group(1)
+        return Addrress(homephone=homephone, mobilephone=mobilephone, workphone=workphone, secondaryphone=secondaryphone)
+
 
 
 
