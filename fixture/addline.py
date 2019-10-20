@@ -22,7 +22,7 @@ class AddlineHelper:
         self.change_field_value("nickname", addrress.niname)
         self.change_field_value("company", addrress.comp)
         self.change_field_value("address", addrress.addrr)
-        self.change_field_value("home", addrress.homtel)
+        self.change_field_value("homephone", addrress.homephone)
         self.change_field_value("email", addrress.mail)
 
     def change_field_value(self, field_name, text):
@@ -47,6 +47,20 @@ class AddlineHelper:
         wd.find_element_by_xpath("(//input[@name='update'])[2]").click()
         self.return_to_home()
         self.adrlist_cache = None
+
+    def open_adr_to_edit_by_index(self, index):
+        wd = self.app.wd
+        self.control_home_page()
+        row = wd.find_elements_by_name("entry")[index]
+        cell = row.find_elements_by_tag_name("td")[7]
+        cell.find_element_by_tag_name("a").click()
+
+    def open_adr_veiw_by_index(self, index):
+        wd = self.app.wd
+        self.control_home_page()
+        row = wd.find_elements_by_name("entry")[index]
+        cell = row.find_elements_by_tag_name("td")[6]
+        cell.find_element_by_tag_name("a").click()
 
     def select_first_adr(self):
         wd = self.app.wd
@@ -85,30 +99,6 @@ class AddlineHelper:
         #wd.find_element_by_link_text("Record successfull deleted")
         self.adrlist_cache = None
 
-    def first_adr_fist_group(self):
-        wd = self.app.wd
-        self.control_home_page()
-        self.select_first_adr()
-        wd.find_element_by_name("add").click()
-        self.return_to_home()
-
-    def first_adr_spec_group(self, app):
-        wd = self.app.wd
-        self.control_home_page()
-        self.select_first_adr()
-        app.group.select_specgroup()
-        wd.find_element_by_name("add").click()
-        self.return_to_home()
-
-    def alladr_in_specgroup(self, app):
-        wd = self.app.wd
-        self.control_home_page()
-        self.select_all()
-        app.group.select_specgroup()
-        wd.find_element_by_name("add").click()
-        self.return_to_home()
-
-
     def return_to_home(self):
         wd = self.app.wd
         # retun home page   просто home
@@ -136,9 +126,27 @@ class AddlineHelper:
     #            text = element.find_element_by_name("selected[]").get_attribute("title")
     #            textL = element.find_element_by_css_selector("td").text
                 cells = element.find_elements_by_css_selector("td")
+                lastname = cells[1].text
+                firstname = cells[2].text
                 id=element.find_element_by_name("selected[]").get_attribute("value")
-                self.adrlist_cache.append(Addrress(lname=cells[1].text, fname=cells[2].text, id=id))
+                all_phones = cells[5].text.splitlines()
+                self.adrlist_cache.append(Addrress(lname=lastname, fname=firstname, id=id, homephone=all_phones[0],
+                                                   mobilephone=all_phones[1], workphone=all_phones[2],
+                                                   secondaryphone=all_phones[3]))
         return list(self.adrlist_cache)
+
+    def get_contact_info_from_edit_page(self, index):
+        wd = self.app.wd
+        self.open_adr_to_edit_by_index(index)
+        firstname = wd.find_element_by_name("firstname").get_attribute("value")
+        lastname = wd.find_element_by_name("lastname").get_attribute("value")
+        id = wd.find_element_by_name("id").get_attribute("value")
+        homephone = wd.find_element_by_name("home").get_attribute("value")
+        mobilephone = wd.find_element_by_name("mobile").get_attribute("value")
+        workphone = wd.find_element_by_name("work").get_attribute("value")
+        secondaryphone = wd.find_element_by_name("phone2").get_attribute("value")
+        return Addrress(fname=firstname, lname=lastname, id=id, homephone=homephone, mobilephone=mobilephone,
+                        workphone=workphone, secondaryphone=secondaryphone)
 
 
 
@@ -169,3 +177,26 @@ class AddlineHelper:
 #        wd.find_element_by_xpath("(//input[@name='update'])[2]").click()
 #        self.return_to_home()
 #        self.adrlist_cache = None
+
+    def first_adr_fist_group(self):
+        wd = self.app.wd
+        self.control_home_page()
+        self.select_first_adr()
+        wd.find_element_by_name("add").click()
+        self.return_to_home()
+
+    def first_adr_spec_group(self, app):
+        wd = self.app.wd
+        self.control_home_page()
+        self.select_first_adr()
+        app.group.select_specgroup()
+        wd.find_element_by_name("add").click()
+        self.return_to_home()
+
+    def alladr_in_specgroup(self, app):
+        wd = self.app.wd
+        self.control_home_page()
+        self.select_all()
+        app.group.select_specgroup()
+        wd.find_element_by_name("add").click()
+        self.return_to_home()

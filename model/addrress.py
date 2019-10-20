@@ -2,14 +2,18 @@ from sys import maxsize
 
 class Addrress:
 
-    def __init__(self, fname=None, mname=None, lname=None, niname=None, comp=None, addrr=None, homtel=None, mail=None, id=None):
+    def __init__(self, fname=None, mname=None, lname=None, niname=None, comp=None, addrr=None, homephone=None,
+                 mobilephone=None, workphone=None, secondaryphone=None, mail=None,  id=None):
         self.fname=fname
         self.mname=mname
         self.lname=lname
         self.niname=niname
         self.comp=comp
         self.addrr=addrr
-        self.homtel=homtel
+        self.homephone=homephone
+        self.mobilephone=mobilephone
+        self.workphone=workphone
+        self.secondaryphone=secondaryphone
         self.mail=mail
         self.id=id
 
