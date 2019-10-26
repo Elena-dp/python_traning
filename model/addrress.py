@@ -3,7 +3,8 @@ from sys import maxsize
 class Addrress:
 
     def __init__(self, fname=None, mname=None, lname=None, niname=None, comp=None, addrr=None, homephone=None,
-                 mobilephone=None, workphone=None, secondaryphone=None, all_phones_from_home_page = None, mail=None,  id=None):
+                 mobilephone=None, workphone=None, secondaryphone=None, all_phones_from_home_page = None, mail=None,
+                 id=None, mail1=None, mail2=None, mail3=None):
         self.fname=fname
         self.mname=mname
         self.lname=lname
@@ -16,6 +17,9 @@ class Addrress:
         self.secondaryphone=secondaryphone
         self.all_phones_from_home_page = all_phones_from_home_page
         self.mail=mail
+        self.mail1=mail1
+        self.mail2=mail2
+        self.mail3=mail3
         self.id=id
 
 

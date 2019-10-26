@@ -130,8 +130,10 @@ class AddlineHelper:
                 lastname = cells[1].text
                 firstname = cells[2].text
                 id=element.find_element_by_name("selected[]").get_attribute("value")
+                adr = cells[3].text
+                mail = cells[4].text
                 all_phones = cells[5].text
-                self.adrlist_cache.append(Addrress(lname=lastname, fname=firstname, id=id,
+                self.adrlist_cache.append(Addrress(lname=lastname, fname=firstname, id=id, addrr = adr, mail = mail,
                                                    all_phones_from_home_page = all_phones))
         return list(self.adrlist_cache)
 
@@ -141,11 +143,17 @@ class AddlineHelper:
         firstname = wd.find_element_by_name("firstname").get_attribute("value")
         lastname = wd.find_element_by_name("lastname").get_attribute("value")
         id = wd.find_element_by_name("id").get_attribute("value")
+        adr = wd.find_element_by_name("address").get_attribute("textarea")
+        mail1 = wd.find_element_by_name("email").get_attribute("value")
+        mail2 = wd.find_element_by_name("email2").get_attribute("value")
+        mail3 = wd.find_element_by_name("email3").get_attribute("value")
         homephone = wd.find_element_by_name("home").get_attribute("value")
         mobilephone = wd.find_element_by_name("mobile").get_attribute("value")
         workphone = wd.find_element_by_name("work").get_attribute("value")
         secondaryphone = wd.find_element_by_name("phone2").get_attribute("value")
-        return Addrress(fname=firstname, lname=lastname, id=id, homephone=homephone, mobilephone=mobilephone,
+        return Addrress(fname=firstname, lname=lastname, id=id, addrr=adr,
+                        mail1=mail1, mail2=mail2, mail3=mail3,
+                        homephone=homephone, mobilephone=mobilephone,
                         workphone=workphone, secondaryphone=secondaryphone)
 
     def get_contact_from_view_page(self,index):
