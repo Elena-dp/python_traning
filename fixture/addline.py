@@ -51,14 +51,14 @@ class AddlineHelper:
 
     def open_adr_to_edit_by_index(self, index):
         wd = self.app.wd
-        self.control_home_page()
+        self.app.open_home_page()
         row = wd.find_elements_by_name("entry")[index]
         cell = row.find_elements_by_tag_name("td")[7]
         cell.find_element_by_tag_name("a").click()
 
     def open_adr_view_by_index(self, index):
         wd = self.app.wd
-        self.control_home_page()
+        self.app.open_home_page()
         row = wd.find_elements_by_name("entry")[index]
         cell = row.find_elements_by_tag_name("td")[6]
         cell.find_element_by_tag_name("a").click()
@@ -120,7 +120,7 @@ class AddlineHelper:
     def get_adr_list(self):
         if self.adrlist_cache is None:
             wd = self.app.wd
-            self.control_home_page()
+            self.app.open_home_page()
             self.adrlist_cache=[]
             #for element in wd.find_elements_by_css_selector("tr"):
             for element in wd.find_elements_by_name("entry"):
@@ -130,10 +130,9 @@ class AddlineHelper:
                 lastname = cells[1].text
                 firstname = cells[2].text
                 id=element.find_element_by_name("selected[]").get_attribute("value")
-                all_phones = cells[5].text.splitlines()
-                self.adrlist_cache.append(Addrress(lname=lastname, fname=firstname, id=id, homephone=all_phones[0],
-                                                   mobilephone=all_phones[1], workphone=all_phones[2],
-                                                   secondaryphone=all_phones[3]))
+                all_phones = cells[5].text
+                self.adrlist_cache.append(Addrress(lname=lastname, fname=firstname, id=id,
+                                                   all_phones_from_home_page = all_phones))
         return list(self.adrlist_cache)
 
     def get_contact_info_from_edit_page(self, index):
@@ -153,10 +152,22 @@ class AddlineHelper:
         wd = self.app.wd
         self.open_adr_view_by_index(index)
         text = wd.find_element_by_id("content").text
-        homephone = re.search("H: (.*)", text).group(1)
-        mobilephone = re.search("M: (.*)", text).group(1)
-        workphone = re.search("W: (.*)", text).group(1)
-        secondaryphone = re.search("P: (.*)", text).group(1)
+        if re.search("H: (.*)", text) is not None:
+            homephone = re.search("H: (.*)", text).group(1)
+        else:
+            homephone=None
+        if re.search("M: (.*)", text) is not None:
+            mobilephone = re.search("M: (.*)", text).group(1)
+        else:
+            mobilephone=None
+        if re.search("W: (.*)", text) is not None:
+            workphone = re.search("W: (.*)", text).group(1)
+        else:
+            workphone = None
+        if re.search("P: (.*)", text) is not None:
+            secondaryphone = re.search("P: (.*)", text).group(1)
+        else:
+            secondaryphone = None
         return Addrress(homephone=homephone, mobilephone=mobilephone, workphone=workphone, secondaryphone=secondaryphone)
 
 
@@ -189,6 +200,24 @@ class AddlineHelper:
 #        wd.find_element_by_xpath("(//input[@name='update'])[2]").click()
 #        self.return_to_home()
 #        self.adrlist_cache = None
+
+#    def get_adr_list(self):
+#        if self.adrlist_cache is None:
+#            wd = self.app.wd
+#            self.app.open_home_page()
+#            self.adrlist_cache=[]
+#            #for element in wd.find_elements_by_css_selector("tr"):
+#            for element in wd.find_elements_by_name("entry"):
+#    #            text = element.find_element_by_name("selected[]").get_attribute("title")
+#    #            textL = element.find_element_by_css_selector("td").text
+#                cells = element.find_elements_by_css_selector("td")
+#                lastname = cells[1].text
+#                firstname = cells[2].text
+#                id=element.find_element_by_name("selected[]").get_attribute("value")
+#                all_phones = cells[5].text.splitlines()
+#                self.adrlist_cache.append(Addrress(lname=lastname, fname=firstname, id=id, homephone=all_phones[0],
+#                                                   mobilephone=all_phones[1], workphone=all_phones[2],
+#                                                   secondaryphone=all_phones[3]))
 
     def first_adr_fist_group(self):
         wd = self.app.wd
